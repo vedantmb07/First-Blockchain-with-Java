@@ -7,15 +7,9 @@ public class Block {
     private String data;
     private long timeStamp;
 
-    public Block(String data, String previousHash ){
+    public Block(String data, String previousHash) {
         this.data = data;
         this.previousHash = previousHash;
         this.timeStamp = new Date().getTime();
     }
-
-    
-}
-
-public class blockChain {
-    
 }
