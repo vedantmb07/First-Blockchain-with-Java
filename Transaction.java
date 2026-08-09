@@ -52,6 +52,7 @@ public class Transaction {
 
         if(getInputsValue() < blockChain.minimumTransaction){
             System.out.println("#Transaction Inputs too small: " + getInputsValue());
+            System.out.println("Please enter the amount greater than " + blockChain.minimumTransaction);
             return false;
         }
 

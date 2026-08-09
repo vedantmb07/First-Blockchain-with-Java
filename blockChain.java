@@ -1,11 +1,12 @@
 import java.security.Security;
 import java.util.*;
-import com.google.gson.GsonBuilder;
+//import com.google.gson.GsonBuilder;
 
 public class blockChain {
 
     public static ArrayList<Block> blockchain = new ArrayList<>();
-    public static HashMap<String, TransactionOutput> UTXOs = new HashMap<String, TransactionOutput>();
+    public static HashMap<String, TransactionOutput> UTXOs = new HashMap<>();
+
     public static int difficulty = 3;
     public static float minimumTransaction = 0.1f;
     public static Wallet walletA;
@@ -41,7 +42,7 @@ public class blockChain {
         System.out.println("WalletB's balance is: " + walletB.getBalance());
 
         Block block2 = new Block(block1.hash);
-        System.out.println("\nWalletA is Attempting to send funds (1000) to WalletB...");
+        System.out.println("\nWalletA is Attempting to send more funds (1000) than it has...");
         block2.addTransaction(walletA.sendFunds(walletB.publicKey, 1000f));
         addBlock(block2);
         System.out.println("\nWalletA's balance is: " + walletA.getBalance());
@@ -63,7 +64,7 @@ public class blockChain {
         HashMap<String, TransactionOutput> tempUTXOs = new HashMap<>();
         tempUTXOs.put(genesisTransaction.outputs.get(0).id, genesisTransaction.outputs.get(0));
 
-        for (int i = 0; i < blockchain.size(); i++) {
+        for (int i = 1; i < blockchain.size(); i++) {
             currentBlock = blockchain.get(i);
             previousBlock = blockchain.get(i - 1);
 

@@ -1,5 +1,6 @@
 import java.security.*;
 import java.util.*;
+import com.google.gson.GsonBuilder;
 
 public class StringUtil {
     public static String applySha256(String input){
@@ -7,7 +8,7 @@ public class StringUtil {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
 
             byte[] hash = digest.digest(input.getBytes("UTF-8"));
-            StringBuilder hexString = new StringBuilder();
+            StringBuffer hexString = new StringBuffer();
             for(int i = 0; i < hash.length; i++){
                 String hex = Integer.toHexString(0xff & hash[i]);
                 if(hex.length() == 1) hexString.append('0');
@@ -47,22 +48,30 @@ public class StringUtil {
         }
     }
 
+    public static String getJson(Object o) {
+		return new GsonBuilder().setPrettyPrinting().create().toJson(o);
+	}
+
+	public static String getDificultyString(int difficulty) {
+		return new String(new char[difficulty]).replace('\0', '0');
+	}
+
     public static String getStringFromKey(Key key){
         return Base64.getEncoder().encodeToString(key.getEncoded());
     }
 
     public static String getMerkleRoot(ArrayList<Transaction> transactions){
         int count = transactions.size();
-        ArrayList<String> previousTreeLayer = new ArrayList<String>();
+        ArrayList<String> previousTreeLayer = new ArrayList<>();
         for(Transaction transaction : transactions){
             previousTreeLayer.add(transaction.transactionId);
         }
 
-        ArrayList<String> treeLayer = new ArrayList<String>();
+        ArrayList<String> treeLayer = new ArrayList<>();
         while(count > 1){
-            treeLayer = new ArrayList<String>();
-            for(int i = 1; i < previousTreeLayer.size(); i++){
-                treeLayer.add(applySha256(previousTreeLayer.get(i+1) + previousTreeLayer.get(i)));
+            treeLayer = new ArrayList<>();
+            for(int i = 1; i < previousTreeLayer.size(); i+=2){
+                treeLayer.add(applySha256(previousTreeLayer.get(i-1) + previousTreeLayer.get(i)));
             }
 
             count = treeLayer.size();

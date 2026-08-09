@@ -5,8 +5,8 @@ public class Block {
     public String hash;
     public String previousHash;
     public String merkleRoot;
-    public ArrayList<Transaction> transactions = new ArrayList<Transaction>();
-    private long timeStamp;
+    public ArrayList<Transaction> transactions = new ArrayList<>();
+    public long timeStamp;
     public int nonce;
 
     public Block(String previousHash) {
@@ -37,7 +37,7 @@ public class Block {
 
     public boolean addTransaction(Transaction transaction){
         if(transaction == null) return false;
-        if((previousHash != "0")){
+        if((!"0".equals(previousHash))){
             if((transaction.processTransaction() != true)){
                 System.out.println("Transaction failed to process. Discarded.");
                 return false;

@@ -6,7 +6,7 @@ public class Wallet {
     public PrivateKey privateKey;
     public PublicKey publicKey;
 
-    public HashMap<String, TransactionOutput> UTXOs = new HashMap<String, TransactionOutput>();
+    public HashMap<String, TransactionOutput> UTXOs = new HashMap<>();
 
     public Wallet(){
         generateKeyPair();
@@ -43,12 +43,12 @@ public class Wallet {
     }
 
     public Transaction sendFunds(PublicKey _recipient, float value){
-        if(getBalance() > value){
+        if(getBalance() < value){
             System.out.println("#Not Enough funds to send transaction. Transaction Discarded.");
             return null;
         }
 
-        ArrayList<TransactionInput> inputs = new ArrayList<TransactionInput>();
+        ArrayList<TransactionInput> inputs = new ArrayList<>();
 
         float total = 0;
         for(Map.Entry<String, TransactionOutput> item : UTXOs.entrySet()){
