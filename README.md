@@ -18,15 +18,17 @@ Welcome to **First-Blockchain-with-Java**! This project is a lightweight, ground
 
 A **blockchain** is an immutable, distributed ledger composed of sequentially linked "blocks".
 
-+-------------------+       +-------------------+       +-------------------+
-|      BLOCK 0      |       |      BLOCK 1      |       |      BLOCK 2      |
-|  (Genesis Block)  |       |                   |       |                   |
-+-------------------+       +-------------------+       +-------------------+
-| Data: "Genesis"   |       | Data: "Tx 10 USD" |       | Data: "Tx 50 USD" |
-| Prev Hash: "0"    |<------| Prev Hash: 00a1...|<------| Prev Hash: 00f4...|
-| Hash: 00a1...     |       | Hash: 00f4...     |       | Hash: 00e9...     |
-| Nonce: 4821       |       | Nonce: 12049      |       | Nonce: 8593       |
-+-------------------+       +-------------------+       +-------------------+
+```text
++-------------------+   +-------------------+   +-------------------+
+|      BLOCK 0      |-->|      BLOCK 1      |-->|      BLOCK 2      |
+|  (Genesis Block)  |   |                   |   |                   |
++-------------------+   +-------------------+   +-------------------+
+| Data: "Genesis"   |   | Data: "Tx 10 USD" |   | Data: "Tx 50 USD" |
+| Prev Hash: "0"    |   | Prev Hash: 00a1...|   | Prev Hash: 00f4...|
+| Hash: 00a1...     |   | Hash: 00f4...     |   | Hash: 00e9...     |
+| Nonce: 4821       |   | Nonce: 12049      |   | Nonce: 8593       |
++-------------------+   +-------------------+   +-------------------+
+```
 
 ### Key Components:
 
@@ -82,6 +84,7 @@ Is Blockchain Valid? true
 ```
 
 ## 🧠 What I Learned
+
 Building a blockchain from scratch in Java provided deep insights into cryptographic algorithms and distributed ledger fundamentals:
 
 - 🔐 **Cryptographic Hashing**: Hands-on experience implementing `MessageDigest` with `SHA-256` to enforce data integrity and immutability.
